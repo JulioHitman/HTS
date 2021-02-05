@@ -1,0 +1,28 @@
+{
+  "name": "HTS",
+  "version": "1.0.0",
+  "description": "",
+  "main": "./src/back/main.js",
+
+  "dependencies": {},
+  "devDependencies": {
+    "electron": "^11.2.2"
+  },
+
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "electron ."
+  },
+
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/JulioHitman/HTS.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/JulioHitman/HTS/issues"
+  },
+  "homepage": "https://github.com/JulioHitman/HTS#readme"
+}
