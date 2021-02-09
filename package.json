@@ -3,17 +3,16 @@
   "version": "1.0.0",
   "description": "",
   "main": "./src/back/main.js",
-
-  "dependencies": {},
-  "devDependencies": {
-    "electron": "^11.2.2"
+  "dependencies": {
+    "custom-electron-titlebar": "^3.2.6"
   },
-
+  "devDependencies": {
+    "electron": "^11.2.3"
+  },
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "start": "electron ."
   },
-
   "repository": {
     "type": "git",
     "url": "git+https://github.com/JulioHitman/HTS.git"
