@@ -7,11 +7,19 @@
     "custom-electron-titlebar": "^3.2.6"
   },
   "devDependencies": {
-    "electron": "^11.2.3"
+    "electron": "^11.2.3",
+    "electron-builder": "^22.9.1"
   },
+
+  "build": {
+    "appId": "com.example.app"
+  },
+
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "electron ."
+    "start": "electron .",
+    "pack": "electron-builder --dir",
+    "dist": "electron-builder"
   },
   "repository": {
     "type": "git",
