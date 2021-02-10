@@ -1,32 +1,45 @@
 {
-  "name": "HTS",
-  "version": "1.0.0",
-  "description": "",
+  "name": "high-trading-system",
+  "version": "1.0.2",
+  "description": "DataSystem",
   "main": "./src/back/main.js",
   "dependencies": {
-    "custom-electron-titlebar": "^3.2.6"
+    "custom-electron-titlebar": "^3.2.6",
+    "electron-log": "^4.3.1",
+    "electron-updater": "^4.3.5"
   },
   "devDependencies": {
     "electron": "^11.2.3",
     "electron-builder": "^22.9.1"
   },
-
   "build": {
-    "appId": "com.example.app"
+    "appId": "com.hightrading.hts",
+    "copyright": "CopyRight HighTrading",
+    "publish": {
+      "provider": "github"
+    },
+    "win": {
+      "certificateFile": "private/hightrading.pfx",
+      "certificatePassword": "",
+      "publisherName": ["hightrading"],
+      "verifyUpdateCodeSignature": false
+    }
   },
-
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "start": "electron .",
     "pack": "electron-builder --dir",
-    "dist": "electron-builder"
+    "dist": "electron-builder",
+    "build-win": "electron-builder -w",
+    "release": "electron-builder -w -p 'onTagOrDraft'",
+    "win-cert": "electron-builder create-self-signed-cert -p hightrading"
   },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/JulioHitman/HTS.git"
   },
   "keywords": [],
-  "author": "",
+  "author": "hightrading",
   "license": "ISC",
   "bugs": {
     "url": "https://github.com/JulioHitman/HTS/issues"
