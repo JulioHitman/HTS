@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8">
+    <title>High Trading System</title>
+    <link rel="stylesheet" href="curve.css">
+    <script src="https://kit.fontawesome.com/1c9144b004.js" crossorigin="anonymous"></script>
+  </head>
+  <body>
+    <div class="container">
+
+      <table class="tg">      
+        <tr>
+          <th class="cvs left" colspan="2">HT</th>                
+        </tr>        
+        
+        <tr>
+          <td class='cvs left'>SPOT</td>
+          <td class='cvs right' id='spotv'></td>                
+        </tr>
+
+        <tr>
+          <td class='cvs left'>EUSCASADO</td>
+          <td class='cvs right' id='euscv'></td>                
+        </tr>
+
+        <tr>
+          <td class='cvs left'>DOLFUT</td>
+          <td class='cvs right' id='dolfutv'></td>                
+        </tr>
+        
+        <tr>
+          <td class='cvs left'>CURVA</td>
+          <td class='cvs right' id='curv'></td>          
+        </tr>
+        <tr>
+          <td class='cvs left'>JUSTO</td>
+          <td class='cvs right' id='justv'></td>         
+        </tr>
+        <tr>
+          <td class='cvs left'>SPREAD</td>
+          <td class='cvs right' id='spreadv'></td>    
+        </tr>
+
+        <tr>
+          <td class='cvs left'>OVER</td>
+          <td class='cvs right' id='overv'></td>    
+        </tr>
+        
+        <!--Curva-->
+        
+        <tr class="pts">
+          <th class="left" colspan="2">BLACK&SCHOLES</th>
+        </tr>
+
+        <tr class="pts">       
+          <td class="right">6</td>
+          <td class="right" id='sixth'></td>          
+        </tr>
+
+        <tr class="pts">
+          <td class="right">5</td>
+          <td class="right" id='fifth'></td>         
+        </tr>
+
+        <tr class="pts">
+          <td class="right">4</td>
+          <td class="right" id='forth'></td>         
+        </tr>
+
+        <tr class="pts">
+          <td class="right">3</td>
+          <td class="right" id='third'></td>          
+        </tr>
+
+        <tr class="pts">
+          <td class="right">2</td>
+          <td class="right" id='second'></td>          
+        </tr>
+
+        <tr class="pts">
+          <td class="right" >1</td>
+          <td class="right" id ='first'></td>        
+        </tr>
+        
+        <tr class="pts">
+          <td class="left">#REF</td>
+          <td class="right" id='ref'></td>        
+        </tr>
+        <tr class="pts">
+          <td class="right">-1</td>
+          <td class="right" id='negFirst'></td>         
+        </tr>
+        <tr class="pts">
+          <td class="right">-2</td>
+          <td class="right" id='negSecond'></td>         
+        </tr>
+        <tr class="pts">
+          <td class="right">-3</td>
+          <td class="right" id='negThird'></td>          
+        </tr>
+        <tr class="pts">
+          <td class="right">-4</td>
+          <td class="right" id='negForth'></td>         
+        </tr>
+        <tr class="pts">
+          <td class="right">-5</td>
+          <td class="right" id='negFifth'></td>          
+        </tr>
+        <tr class="pts">
+          <td class="right">-6</td>
+          <td class="right" id='negSixth'></td>         
+        </tr>
+      </table>
+    </div>
+
+    <script src="./curve.js"></script>
+  </body>
+</html>

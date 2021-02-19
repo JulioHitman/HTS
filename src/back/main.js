@@ -1,10 +1,14 @@
-const { app, BrowserWindow } = require('electron')
+const { app, BrowserWindow, ipcMain, Menu } = require('electron');
 const updater = require('./updater');
 
-function createWindow () {
-   setTimeout( updater, 3000 )
+const isMac = process.platform === "darwin";
 
-  const win = new BrowserWindow({
+let MainPage, LoginPage
+
+function createWindow () {
+  setTimeout( updater, 1500 )
+
+  LoginPage = new BrowserWindow({
     width: 800,
     height: 600,
     backgroundColor: '#FFF',
@@ -15,11 +19,26 @@ function createWindow () {
     frame: false
   })
 
+  MainPage = new BrowserWindow({
+    width: 800,
+    height: 600,
+    backgroundColor: '#FFF',
+    webPreferences: {
+      nodeIntegration: true,
+      enableRemoteModule: false
+    },
+    show: false
+  })
+
+
   // win.webContents.openDevTools();
-
-
-  win.loadFile('./src/front/login/login.html')
+  LoginPage.loadFile('./src/front/login/login.html');
+  MainPage.loadFile('./src/front/curve/curve.html');  
 }
+
+
+
+//C:\Users\Atendimento\Documents\projects\HTS\src\front\index.html
 
 
 app.whenReady().then(createWindow)
@@ -35,3 +54,27 @@ app.on('activate', () => {
     createWindow()
   }
 })
+
+ipcMain.on('Login-channel', (e, acess) => {
+
+  if (acess.cpf === '123456789' && acess.password === '123456') {
+    LoginPage.on('close', () => {
+      LoginPage = null      
+    });
+
+    LoginPage.close()
+
+    e.sender.send('channel-reponse', 'Message received')
+    
+    setTimeout(() => {
+      MainPage.show();
+    }, 1000);
+  }
+})
+ 
+const template = [{
+  label: "File",
+  submenu: [isMac ? { role: "close" } : { role: "quit" }]
+}]
+const menu = Menu.buildFromTemplate(template);
+Menu.setApplicationMenu(menu);
