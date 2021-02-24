@@ -1,7 +1,11 @@
 const ipcRenderer = require('electron').ipcRenderer
 
+const VMasker = require('vanilla-masker');
 const cpf = document.getElementById('cpf');
 const password = document.getElementById('password')
+
+VMasker(cpf).maskPattern("999.999.999-99");
+
 
 document.getElementById('login').addEventListener('click', event => {
   let access = {
@@ -12,4 +16,6 @@ document.getElementById('login').addEventListener('click', event => {
 })
 
 ipcRenderer.on('Login-channel', (e, args) => {
+ 
 })
+

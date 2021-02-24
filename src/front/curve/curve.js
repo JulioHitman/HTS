@@ -13,7 +13,7 @@
 // };
 
 
-const axios = require('axios');
+const superagent = require('superagent');
 
 //-----------CURV-----------
 const spotv = document.getElementById('spotv');
@@ -43,6 +43,8 @@ const negSixth = document.getElementById('negSixth');
 
 //----------------------------------------------------
 
+
+
   var values = ''
   var market_values = ''
   var dolCurve = ''
@@ -50,47 +52,47 @@ const negSixth = document.getElementById('negSixth');
   var refPoints = ''
 
   setInterval(() => {
-    axios.get('https://calm-stream-02692.herokuapp.com/sendvalues')
-         .then(res => {
-            values = res.data.values;
-            market_values = values["MARKET WATCH"];
-            dolCurve = values["CURVA"];
-            points = values["PONTOS"];
-            refPoints = values["REF BLACK&SCHOLES"];
+    superagent
+      .get('https://fast-plains-96418.herokuapp.com/sendvalues')
+      .end( (err, res) => {
+        values = res.body.values;
+        market_values = values["MARKET WATCH"];
+        dolCurve = values["CURVA"];
+        points = values["PONTOS"];
+        refPoints = values["REF BLACK&SCHOLES"];
 
-            console.log(res);
-          
-            //["CURVA"]
-            spotv.innerHTML = dolCurve.SPOT;
-            euscv.innerHTML = dolCurve.EUSCASADO;
-            dolfutv.innerHTML =  dolCurve.DOL1;
-            curv.innerHTML = dolCurve.CURVA;
-            justv.innerHTML = dolCurve.JUSTO;
-            spreadv.innerHTML = dolCurve["SPREAD CURVA/DOL"];
-            overv.innerHTML = dolCurve.OVER;
+       
+        //["CURVA"]
+        spotv.innerHTML = dolCurve.SPOT;
+        euscv.innerHTML = dolCurve.EUSCASADO;
+        dolfutv.innerHTML =  dolCurve.DOL1;
+        curv.innerHTML = dolCurve.CURVA;
+        justv.innerHTML = dolCurve.JUSTO;
+        spreadv.innerHTML = dolCurve["SPREAD CURVA/DOL"];
+        overv.innerHTML = dolCurve.OVER;
 
 
-            // CURVA.EUSCASADO
-            // CURVA.OVER
-            // CURVA.SPOT
+        // CURVA.EUSCASADO
+        // CURVA.OVER
+        // CURVA.SPOT
 
-            //["PONTOS"] ["REF PONTOS"]       
-          
-            sixth.innerHTML = refPoints[6];
-            fifth.innerHTML = refPoints[5];
-            forth.innerHTML = refPoints[4];
-            third.innerHTML = refPoints[3];
-            second.innerHTML = refPoints[2];
-            first.innerHTML = refPoints[1];
-          
-            ref.innerHTML = refPoints.REF;
-          
-            negFirst.innerHTML = refPoints["-1"];
-            negSecond.innerHTML = refPoints["-2"];
-            negThird.innerHTML = refPoints["-3"];
-            negForth.innerHTML = refPoints["-4"];
-            negFifth.innerHTML = refPoints["-5"];
-            negSixth.innerHTML = refPoints["-6"];
+        //["PONTOS"] ["REF PONTOS"]       
+      
+        sixth.innerHTML = refPoints[6];
+        fifth.innerHTML = refPoints[5];
+        forth.innerHTML = refPoints[4];
+        third.innerHTML = refPoints[3];
+        second.innerHTML = refPoints[2];
+        first.innerHTML = refPoints[1];
+      
+        ref.innerHTML = refPoints.REF;
+      
+        negFirst.innerHTML = refPoints["-1"];
+        negSecond.innerHTML = refPoints["-2"];
+        negThird.innerHTML = refPoints["-3"];
+        negForth.innerHTML = refPoints["-4"];
+        negFifth.innerHTML = refPoints["-5"];
+        negSixth.innerHTML = refPoints["-6"];
 
-          })
-  },300);
+      })
+  }, 100);

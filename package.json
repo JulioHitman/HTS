@@ -1,13 +1,14 @@
 {
   "name": "high-trading-system",
-  "version": "0.8.1",
+  "version": "0.9.3",
   "description": "DataSystem",
   "main": "./src/back/main.js",
   "dependencies": {
-    "axios": "^0.21.1",
     "custom-electron-titlebar": "^3.2.6",
     "electron-log": "^4.3.1",
-    "electron-updater": "^4.3.5"
+    "electron-updater": "^4.3.5",
+    "superagent": "^6.1.0",
+    "vanilla-masker": "^1.2.0"
   },
   "devDependencies": {
     "electron": "^11.2.3",

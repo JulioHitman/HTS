@@ -1,5 +1,7 @@
-const { app, BrowserWindow, ipcMain, Menu } = require('electron');
+const { app, BrowserWindow, ipcMain, Menu, dialog } = require('electron');
 const updater = require('./updater');
+
+const superagent = require('superagent');
 
 const isMac = process.platform === "darwin";
 
@@ -31,7 +33,7 @@ function createWindow () {
   })
 
 
-  // win.webContents.openDevTools();
+  LoginPage.webContents.openDevTools();
   LoginPage.loadFile('./src/front/login/login.html');
   MainPage.loadFile('./src/front/curve/curve.html');  
 }
@@ -55,9 +57,74 @@ app.on('activate', () => {
   }
 })
 
+// request to login acess
 ipcMain.on('Login-channel', (e, acess) => {
 
-  if (acess.cpf === '123456789' && acess.password === '123456') {
+  // needed to disabled
+  superagent.post('https://ht.coelhodev.com.br/hts/v1/login')
+            .disableTLSCerts()
+            .send({ user: acess.cpf, password: acess.password })
+            .end((err, res ) => {
+              const response = res.body
+              console.log(response);
+              var errors_text, arry_text
+
+              if ( response.hasOwnProperty("error") === true ) {
+                
+                
+                if (response.error.hasOwnProperty("password") === true) {
+                  errors_text = "Senha inválida"
+                }                  
+                
+                if (response.error.hasOwnProperty("user") === true) {
+                  arry_text = response.error.user
+                  // TODO change the hardcoded text from an api response
+                  if (Array.isArray(arry_text) === true) {                    
+                    errors_text = "CPF inválido"
+                  }else{                  
+                    errors_text = "CPF não cadastrado"
+                  }
+                }
+                  
+                    
+                dialog.showMessageBox({
+                  type: 'info',
+                  message: errors_text,
+                })               
+                
+                // e.sender.send('Login-channel', errors_text)
+
+              } else {
+
+                if (response.payment.status === 'paid' && response.payment.active === true) {
+                  goToLogin();
+                } else {
+                  dialog.showMessageBox({
+                    type: 'info',
+                    message: errors_text,
+                  })
+                }         
+              }                  
+            })
+
+  // user: 368.515.298-07
+  // password: ht123
+
+  // if (acess.cpf === '123456789' && acess.password === '123456') {
+  //   LoginPage.on('close', () => {
+  //     LoginPage = null      
+  //   });
+
+  //   LoginPage.close()
+
+  //   e.sender.send('channel-reponse', 'Message received')
+    
+  //   setTimeout(() => {
+  //     MainPage.show();
+  //   }, 2000);
+  // }
+
+  const goToLogin = () => {
     LoginPage.on('close', () => {
       LoginPage = null      
     });
@@ -68,7 +135,7 @@ ipcMain.on('Login-channel', (e, acess) => {
     
     setTimeout(() => {
       MainPage.show();
-    }, 1000);
+    }, 2000);
   }
 })
  
