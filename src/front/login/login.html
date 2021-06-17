@@ -30,14 +30,20 @@
       <h1>Login</h1>
       <form method="post">
         <input style='-webkit-app-region:no-drag;' id='cpf' type="text" name="u" placeholder="CPF" required="required" />
-        <input style='-webkit-app-region:no-drag;' id='password' type="password" name="p" placeholder="Password" required="required" />
-        <button style='-webkit-app-region:no-drag;'id='login' type="button" class="btn btn-primary btn-block btn-large">Entrar</button>
+        <input style='-webkit-app-region:no-drag; margin-bottom: 5px;' id='password' type="password" name="p" placeholder="Password" required="required" />
+        <label for="checkbox" class='remember-label'> Lembrar - me</label>
+        <input type="checkbox" id="remember-checkbox" name="remember-checkbox" style="-webkit-app-region:no-drag;" class="remember-input">
+        <button style='-webkit-app-region:no-drag;'id='login' type="submit" class="btn btn-primary btn-block btn-large">Entrar</button>
       </form>
-    </div>  
+      <div>
+        <a href="https://hightrading.com.br/password/reset" target="_blank" style='-webkit-app-region:no-drag;' class='forgot'>Esqueci minha senha</a>
+      </div> 
+    </div>
+
   </body>
   
   <script>
     require('./ipc.js');
-    require('./loginHead.js')
+    require('./loginHead.js');    
   </script>
 </html>

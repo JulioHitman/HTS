@@ -191,3 +191,24 @@ input:focus { box-shadow: inset 0 -5px 45px rgba(100,100,100,0.4), 0 1px 1px rgb
 .maximized #max-button {
   display: none;
 }
+
+.forgot {
+  color: white;
+  cursor: pointer;
+  text-decoration: none;
+  font-size: small;
+}
+
+.remember-input{
+  width: 15px;
+  margin-bottom: 0px;
+  margin-left: 5px;
+  margin-top: 11px;
+}
+
+.remember-label{
+  float:left;
+  margin: 5px 0px;
+  color: white;
+}
+

@@ -1,14 +1,26 @@
-const { app, BrowserWindow, ipcMain, Menu, dialog } = require('electron');
+const { app, BrowserWindow, ipcMain, Menu, dialog, shell } = require('electron');
 const updater = require('./updater');
 
 const superagent = require('superagent');
 
 const isMac = process.platform === "darwin";
 
-let MainPage, LoginPage
+const windowsStateKeeper = require('electron-window-state');
+
+const Store = require('electron-store');
+
+const store = new Store();
+
+
+let MainPage, LoginPage, setState
 
 function createWindow () {
   setTimeout( updater, 1500 )
+
+  setState = windowsStateKeeper({
+    defaultWidth: 800,
+    defaultHeight: 600
+  });
 
   LoginPage = new BrowserWindow({
     width: 800,
@@ -22,20 +34,47 @@ function createWindow () {
   })
 
   MainPage = new BrowserWindow({
-    width: 800,
-    height: 600,
+    width: setState.width,
+    height: setState.height,
+    x: setState.x,
+    y: setState.y,
     backgroundColor: '#FFF',
     webPreferences: {
       nodeIntegration: true,
       enableRemoteModule: false
     },
     show: false
-  })
+  });
+
+  ChartsPage = new BrowserWindow({
+    width: setState.width,
+    height: setState.height,
+    x: setState.x,
+    y: setState.y,
+    backgroundColor: '#FFF',
+    webPreferences: {
+      nodeIntegration: true,
+      enableRemoteModule: true
+    },
+    show: false    
+  });
+
+  LoginPage.webContents.on('new-window', function(e, url) {
+    e.preventDefault();
+    shell.openExternal(url);
+  });
 
 
-  LoginPage.webContents.openDevTools();
+  // LoginPage.webContents.openDevTools();
+  // MainPage.webContents.openDevTools();
+  ChartsPage.webContents.openDevTools();
+
+
   LoginPage.loadFile('./src/front/login/login.html');
-  MainPage.loadFile('./src/front/curve/curve.html');  
+  MainPage.loadFile('./src/front/curve/curve.html');
+  ChartsPage.loadFile('./src/front/chart/charts.html');
+
+  setState.manage(MainPage);
 }
 
 
@@ -59,11 +98,23 @@ app.on('activate', () => {
 
 // request to login acess
 ipcMain.on('Login-channel', (e, acess) => {
+  const freeAcess = true ;
+  let acessCpf, acessPassword;
+
+  if (acess.saved == true){
+    acessCpf = store.get('cpf');
+    acessPassword = store.get('password');
+
+
+  } else {
+    acessCpf = acess.cpf;
+    acessPassword = acess.password;
+  }
 
   // needed to disabled
-  superagent.post('https://ht.coelhodev.com.br/hts/v1/login')
+  superagent.post('https://hightrading.com.br/hts/v1/login')
             .disableTLSCerts()
-            .send({ user: acess.cpf, password: acess.password })
+            .send({ user: acessCpf, password: acessPassword })
             .end((err, res ) => {
               const response = res.body
               console.log(response);
@@ -84,8 +135,7 @@ ipcMain.on('Login-channel', (e, acess) => {
                   }else{                  
                     errors_text = "CPF não cadastrado"
                   }
-                }
-                  
+                }                  
                     
                 dialog.showMessageBox({
                   type: 'info',
@@ -95,20 +145,19 @@ ipcMain.on('Login-channel', (e, acess) => {
                 // e.sender.send('Login-channel', errors_text)
 
               } else {
-
-                if (response.payment.status === 'paid' && response.payment.active === true) {
+                let perfilName = response.perfil.name.toString().toLowerCase()
+                if ( response.payment.active === true  || response.perfil.name === 'admin' || response.perfil.name === 'vip') {
                   goToLogin();
-                } else {
+                } else if (response.payment.active === false ) {
+                  errors_text = 'Conta não ativa para HTS'
+
                   dialog.showMessageBox({
                     type: 'info',
                     message: errors_text,
                   })
-                }         
-              }                  
-            })
-
-  // user: 368.515.298-07
-  // password: ht123
+                }
+              }
+            }) 
 
   // if (acess.cpf === '123456789' && acess.password === '123456') {
   //   LoginPage.on('close', () => {
@@ -134,7 +183,8 @@ ipcMain.on('Login-channel', (e, acess) => {
     e.sender.send('channel-reponse', 'Message received')
     
     setTimeout(() => {
-      MainPage.show();
+      // MainPage.show();
+      ChartsPage.show();
     }, 2000);
   }
 })

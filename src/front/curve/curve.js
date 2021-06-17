@@ -56,12 +56,13 @@ const negSixth = document.getElementById('negSixth');
       .get('https://fast-plains-96418.herokuapp.com/sendvalues')
       .end( (err, res) => {
         values = res.body.values;
-        market_values = values["MARKET WATCH"];
+        console.log(values);
+        // market_values = values["MARKET WATCH"];
         dolCurve = values["CURVA"];
         points = values["PONTOS"];
         refPoints = values["REF BLACK&SCHOLES"];
 
-       
+        
         //["CURVA"]
         spotv.innerHTML = dolCurve.SPOT;
         euscv.innerHTML = dolCurve.EUSCASADO;
@@ -76,7 +77,8 @@ const negSixth = document.getElementById('negSixth');
         // CURVA.OVER
         // CURVA.SPOT
 
-        //["PONTOS"] ["REF PONTOS"]       
+        //["PONTOS"] ["REF PONTOS"]  
+        // PONTOS["VOL IMP"]     
       
         sixth.innerHTML = refPoints[6];
         fifth.innerHTML = refPoints[5];
@@ -85,8 +87,11 @@ const negSixth = document.getElementById('negSixth');
         second.innerHTML = refPoints[2];
         first.innerHTML = refPoints[1];
       
-        ref.innerHTML = refPoints.REF;
-      
+        // ref.innerHTML = refPoints.REF;
+
+        // ref.innerHTML = refPoints.REF;
+        ref.innerHTML = points["FREQUENCIA"]; 
+
         negFirst.innerHTML = refPoints["-1"];
         negSecond.innerHTML = refPoints["-2"];
         negThird.innerHTML = refPoints["-3"];
@@ -95,4 +100,4 @@ const negSixth = document.getElementById('negSixth');
         negSixth.innerHTML = refPoints["-6"];
 
       })
-  }, 100);
+  }, 300);

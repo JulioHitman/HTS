@@ -1,12 +1,15 @@
 {
-  "name": "high-trading-system",
-  "version": "0.9.3",
+  "name": "HTS",
+  "version": "0.9.17",
   "description": "DataSystem",
   "main": "./src/back/main.js",
   "dependencies": {
+    "@arction/lcjs": "^3.0.1",
     "custom-electron-titlebar": "^3.2.6",
     "electron-log": "^4.3.1",
+    "electron-store": "^8.0.0",
     "electron-updater": "^4.3.5",
+    "electron-window-state": "^5.0.3",
     "superagent": "^6.1.0",
     "vanilla-masker": "^1.2.0"
   },
