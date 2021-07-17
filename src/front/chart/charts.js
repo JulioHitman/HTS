@@ -4,7 +4,13 @@ const lcjs = lightningChart({
   // license: 'my-license-number'
 })
 
-const chart = lcjs.ChartXY();
+const chart = lcjs.ChartXY({
+  defaultAxisY: {   
+    opposite: true,
+  }
+});
+
+
 const dClass = new Date();
 const today = dClass.getDate();
 const month = dClass.getMonth();
@@ -12,13 +18,14 @@ const year = dClass.getFullYear()
 const todayMinutes = dClass.getMinutes();
 
 const dateOrigin = new Date();
+const axisY = chart.getDefaultAxisY();
+const axisX = chart.getDefaultAxisX();
 
-
-chart.getDefaultAxisY()
+  axisY
     .setTitle('USD')    
     .setScrollStrategy(AxisScrollStrategies.expansion)
 
-chart.getDefaultAxisX()
+  axisX
     .setScrollStrategy(AxisScrollStrategies.progressive)
     .setTickStrategy(
       AxisTickStrategies.DateTime,
@@ -26,17 +33,17 @@ chart.getDefaultAxisX()
     )
 
 
-    const series = chart.addLineSeries({
-      dataPattern: {
-          // pattern: 'ProgressiveX' => Each consecutive data point has increased X coordinate.
-          pattern: 'ProgressiveX',
-          // regularProgressiveStep: true => The X step between each consecutive data point is regular (for example, always `1.0`).
-          regularProgressiveStep: true,
-      }
-   })
-      // Destroy automatically outscrolled data (old data becoming out of scrolling axis range).
-      // Actual data cleaning can happen at any convenient time (not necessarily immediately when data goes out of range).
-      .setMaxPointCount(2000)
+const series = chart.addLineSeries({
+  dataPattern: {
+      // pattern: 'ProgressiveX' => Each consecutive data point has increased X coordinate.
+      pattern: 'ProgressiveX',
+      // regularProgressiveStep: true => The X step between each consecutive data point is regular (for example, always `1.0`).
+      regularProgressiveStep: true,
+  }
+})
+  // Destroy automatically outscrolled data (old data becoming out of scrolling axis range).
+  // Actual data cleaning can happen at any convenient time (not necessarily immediately when data goes out of range).
+  .setMaxPointCount(2000)
   
   // Style the series
   series
