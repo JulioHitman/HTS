@@ -67,12 +67,12 @@ function createWindow () {
 
   // LoginPage.webContents.openDevTools();
   // MainPage.webContents.openDevTools();
-  ChartsPage.webContents.openDevTools();
+  // ChartsPage.webContents.openDevTools();
 
 
   LoginPage.loadFile('./src/front/login/login.html');
   MainPage.loadFile('./src/front/curve/curve.html');
-  ChartsPage.loadFile('./src/front/chart/charts.html');
+  // ChartsPage.loadFile('./src/front/chart/charts.html');
 
   setState.manage(MainPage);
 }
@@ -183,8 +183,8 @@ ipcMain.on('Login-channel', (e, acess) => {
     e.sender.send('channel-reponse', 'Message received')
     
     setTimeout(() => {
-      // MainPage.show();
-      ChartsPage.show();
+      MainPage.show();
+      // ChartsPage.show();
     }, 2000);
   }
 })

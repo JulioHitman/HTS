@@ -17,7 +17,7 @@ const superagent = require('superagent');
 
 //-----------CURV-----------
 const spotv = document.getElementById('spotv');
-const euscv = document.getElementById('euscv');
+const frp = document.getElementById('frp');
 const dolfutv = document.getElementById('dolfutv');
 const curv = document.getElementById('curv');
 const justv = document.getElementById('justv');
@@ -65,7 +65,7 @@ const negSixth = document.getElementById('negSixth');
         
         //["CURVA"]
         spotv.innerHTML = dolCurve.SPOT;
-        euscv.innerHTML = dolCurve.EUSCASADO;
+        frp.innerHTML = dolCurve.FRP0;
         dolfutv.innerHTML =  dolCurve.DOL1;
         curv.innerHTML = dolCurve.CURVA;
         justv.innerHTML = dolCurve.JUSTO;
