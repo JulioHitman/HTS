@@ -1,6 +1,6 @@
 {
   "name": "HTS",
-  "version": "0.9.17",
+  "version": "0.9.18",
   "description": "DataSystem",
   "main": "./src/back/main.js",
   "dependencies": {
