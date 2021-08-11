@@ -12,7 +12,7 @@ const Store = require('electron-store');
 const store = new Store();
 
 
-let MainPage, LoginPage, setState
+let MainPage, LoginPage, setState, Tools
 
 function createWindow () {
   setTimeout( updater, 1500 )
@@ -46,7 +46,7 @@ function createWindow () {
     show: false
   });
 
-  ChartsPage = new BrowserWindow({
+  Tools = new BrowserWindow({
     width: setState.width,
     height: setState.height,
     x: setState.x,
@@ -67,12 +67,12 @@ function createWindow () {
 
   // LoginPage.webContents.openDevTools();
   // MainPage.webContents.openDevTools();
-  // ChartsPage.webContents.openDevTools();
+  // Tools.webContents.openDevTools();
 
 
   LoginPage.loadFile('./src/front/login/login.html');
   MainPage.loadFile('./src/front/curve/curve.html');
-  // ChartsPage.loadFile('./src/front/chart/charts.html');
+  Tools.loadFile('./src/front/tools/tools.html');
 
   setState.manage(MainPage);
 }
@@ -188,10 +188,16 @@ ipcMain.on('Login-channel', (e, acess) => {
     }, 2000);
   }
 })
- 
+
 const template = [{
-  label: "File",
-  submenu: [isMac ? { role: "close" } : { role: "quit" }]
-}]
+  label: "Tools",
+  submenu: [
+    {
+      label: "Pin to Foreground",
+      click: () => Tools.show()
+    }
+  ]
+  }
+]
 const menu = Menu.buildFromTemplate(template);
 Menu.setApplicationMenu(menu);
