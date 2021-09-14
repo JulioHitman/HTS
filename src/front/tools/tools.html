@@ -4,8 +4,106 @@
     <title>High Trading System</title>
     <link rel="stylesheet" href="charts.css">
     <script src="https://kit.fontawesome.com/1c9144b004.js" crossorigin="anonymous"></script>
+    <script defer src="js/color.class.js"></script>
   </head>
   <body>
-    <h5> Nothing </h5>
+    <section class="main">
+      <aside class="sliders">
+          <div class="red_bar">
+              <input type="range" id="red_bar" min="0" max="255" value="0" />
+              <input type="number" id="red_value" maxlength="3" />
+          </div>
+          <div class="green_bar">
+              <input type="range"  id="green_bar" min="0" max="255" value="0" />
+              <input type="number" id="green_value" maxlength="3" />
+          </div>
+          <div class="blue_bar">
+              <input type="range" id="blue_bar" min="0" max="255" value="0" />
+              <input type="number" id="blue_value" maxlength="3" />
+          </div>
+          <div class="alpha_bar">
+              <input type="range" id="alpha_bar" min="0" max="255" value="0" />
+              <input type="text" id="alpha_value" maxlength="4" />
+          </div>
+      </aside>
+      <aside class="inputs"> 
+        <p id="test_color">test Color</p>
+      </aside>
+      <aside class="value">
+          <input type="text" id="hex_value" maxlength="7" />
+      </aside>
+  </section>
+    <script>
+      var red_value = 0, green_value = 0, blue_value = 0, alpha_value = 1;
+      var red_input = document.querySelector(".red_bar input")
+      var red_range = document.querySelector('#red_value')
+      var green_input = document.querySelector(".green_bar input")
+      var green_range = document.querySelector("#green_value")
+      var blue_progress = document.querySelector(".blue_bar progress")
+      var blue_input = document.querySelector(".blue_bar input")
+      var blue_range = document.querySelector("#blue_value")
+      var alpha_range = document.querySelector("#alpha_value")
+      var alpha_input = document.querySelector(".alpha_bar input")
+      const test_color_spam = document.querySelector('#test_color')
+      const body = document.querySelector("body");
+
+      red_input.oninput = function () {              
+        red_range.value = this.value
+        red_value = this.value
+        console.log(red_value)
+        console.log(green_value)
+        console.log(blue_value)
+        console.log(`rgba(${red_value}, ${green_value}, ${blue_value}, ${alpha_value})`);
+        body.style.background = `rgba(${red_value}, ${green_value}, ${blue_value}, ${alpha_value})`
+      };
+
+      red_range.oninput = function () {        
+        red_input.value = this.value
+        red_value = this.value
+        console.log(red_value)
+        console.log(green_value)
+        console.log(blue_value)
+        body.style.background = `rgba(${red_value}, ${green_value}, ${blue_value}, ${alpha_value})`
+      };
+
+      green_input.oninput = function() {
+        green_range.value = this.value
+        green_value = this.value
+        console.log(red_value)
+        console.log(green_value)
+        console.log(blue_value)
+        console.log(`rgba(${red_value}, ${green_value}, ${blue_value}, ${alpha_value})`);
+        body.style.background = `rgba(${red_value}, ${green_value}, ${blue_value}, ${alpha_value})`
+      };
+
+      green_range.oninput = function() {
+        green_input.value = this.value
+        green_value = this.value
+        console.log(red_value)
+        console.log(green_value)
+        console.log(blue_value)
+        body.style.background = `rgba(${red_value}, ${green_value}, ${blue_value}, ${alpha_value})`
+      };
+
+      blue_input.oninput = function() {
+        blue_range.value = this.value
+        blue_value = this.value
+        console.log(red_value)
+        console.log(green_value)
+        console.log(blue_value)
+        console.log(`rgba(${red_value}, ${green_value}, ${blue_value}, ${alpha_value})`);
+        body.style.background = `rgba(${red_value}, ${green_value}, ${blue_value}, ${alpha_value})`
+      };
+
+      blue_range.oninput = function() {
+        blue_input.value = this.value
+        blue_value = this.value
+        console.log(red_value)
+        console.log(green_value)
+        console.log(blue_value)
+        body.style.background = `rgba(${red_value}, ${green_value}, ${blue_value}, ${alpha_value})`
+      };
+
+    </script>
   </body> 
 </html>
