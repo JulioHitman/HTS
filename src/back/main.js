@@ -190,11 +190,10 @@ ipcMain.on('Login-channel', (e, acess) => {
 })
 
 const template = [{
-  label: "Tools",
+  label: "Ferramentas", // Tools
   submenu: [
     {
-      label: "Pin to Foreground",
-      click: () => Tools.show()
+      label: "Breve..."
     }
   ]
   }
