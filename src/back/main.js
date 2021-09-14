@@ -67,7 +67,7 @@ function createWindow () {
 
   // LoginPage.webContents.openDevTools();
   // MainPage.webContents.openDevTools();
-  // Tools.webContents.openDevTools();
+  Tools.webContents.openDevTools();
 
 
   LoginPage.loadFile('./src/front/login/login.html');
