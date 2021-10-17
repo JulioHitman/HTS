@@ -212,7 +212,7 @@ const createToolsModal = (htmlFile, parentWindow, width, height) => {
 
 
 const template = [{
-  label: "Tools",
+  label: "Ferramentas", // Tools
   submenu: [
     {
       label: "Pin to Foreground",

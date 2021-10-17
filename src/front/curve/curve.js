@@ -70,7 +70,7 @@ const negSixth = document.getElementById('negSixth');
 
   setInterval(() => {
     superagent
-      .get('https://fast-plains-96418.herokuapp.com/sendvalues')
+      .get('https://calm-stream-02692.herokuapp.com/sendvalues')
       .end( (err, res) => {
         values = res.body.values;
         // console.log(values);
