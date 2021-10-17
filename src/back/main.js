@@ -189,12 +189,34 @@ ipcMain.on('Login-channel', (e, acess) => {
   }
 })
 
+const createToolsModal = (htmlFile, parentWindow, width, height) => {
+  let modal = new BrowserWindow({
+    width: width,
+    height: height,
+    // modal: true,
+    // parent: parentWindow,
+    autoHideMenuBar: true,
+    webPreferences: {  
+      nodeIntegration: true,
+      enableRemoteModule: true
+    }
+  })
+
+  modal.loadFile(htmlFile)
+
+  return modal;
+
+}
+
+
+
+
 const template = [{
   label: "Tools",
   submenu: [
     {
       label: "Pin to Foreground",
-      click: () => Tools.show()
+      click: () => createToolsModal('./src/front/tools/tools.html',null,800,600)
     }
   ]
   }
