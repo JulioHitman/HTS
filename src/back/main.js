@@ -189,34 +189,41 @@ ipcMain.on('Login-channel', (e, acess) => {
   }
 })
 
-const createToolsModal = (htmlFile, parentWindow, width, height) => {
+const createToolsModal = (options) => {
   let modal = new BrowserWindow({
-    width: width,
-    height: height,
-    // modal: true,
-    // parent: parentWindow,
+    width: options.width,
+    height: options.height,
+    modal: options.modal,
+    parent: options.parentWindow,
     autoHideMenuBar: true,
     webPreferences: {  
       nodeIntegration: true,
       enableRemoteModule: true
-    }
-  })
+    },
+    frame: options.frame
+  });
 
-  modal.loadFile(htmlFile)
+  modal.loadFile(options.htmlFile)
 
   return modal;
-
 }
 
 
-
+const colorsTools = {
+  width: 800,
+  height: 600,
+  frame: false,
+  parentWindow: false,
+  modal: false,
+  htmlFile: './src/front/tools/tools.html'
+}
 
 const template = [{
   label: "Ferramentas", // Tools
   submenu: [
     {
       label: "Pin to Foreground",
-      click: () => createToolsModal('./src/front/tools/tools.html',null,800,600)
+      click: () => createToolsModal(colorsTools)
     }
   ]
   }

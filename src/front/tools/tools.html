@@ -2,11 +2,32 @@
   <head>
     <meta charset="UTF-8">
     <title>High Trading System</title>
-    <link rel="stylesheet" href="charts.css">
+    <link rel="stylesheet" href="tools.css">
     <script src="https://kit.fontawesome.com/1c9144b004.js" crossorigin="anonymous"></script>
     <script defer src="js/color.class.js"></script>
   </head>
   <body>
+
+    <header style='-webkit-app-region:drag;' id='titlebar'>
+      <div id="window-controls">
+        <div class="button" id="min-button">
+          <img class="icon" srcset="icons/min-w-10.png 1x, icons/min-w-12.png 1.25x, icons/min-w-15.png 1.5x, icons/min-w-15.png 1.75x, icons/min-w-20.png 2x, icons/min-w-20.png 2.25x, icons/min-w-24.png 2.5x, icons/min-w-30.png 3x, icons/min-w-30.png 3.5x" draggable="false" />
+        </div>
+  
+        <div class="button" id="max-button">
+          <img class="icon" srcset="icons/max-w-10.png 1x, icons/max-w-12.png 1.25x, icons/max-w-15.png 1.5x, icons/max-w-15.png 1.75x, icons/max-w-20.png 2x, icons/max-w-20.png 2.25x, icons/max-w-24.png 2.5x, icons/max-w-30.png 3x, icons/max-w-30.png 3.5x" draggable="false" />
+        </div>
+  
+        <div class="button" id="restore-button">
+          <img class="icon" srcset="icons/restore-w-10.png 1x, icons/restore-w-12.png 1.25x, icons/restore-w-15.png 1.5x, icons/restore-w-15.png 1.75x, icons/restore-w-20.png 2x, icons/restore-w-20.png 2.25x, icons/restore-w-24.png 2.5x, icons/restore-w-30.png 3x, icons/restore-w-30.png 3.5x" draggable="false" />
+        </div>
+  
+        <div class="button" id="close-button">
+          <img class="icon" srcset="icons/close-w-10.png 1x, icons/close-w-12.png 1.25x, icons/close-w-15.png 1.5x, icons/close-w-15.png 1.75x, icons/close-w-20.png 2x, icons/close-w-20.png 2.25x, icons/close-w-24.png 2.5x, icons/close-w-30.png 3x, icons/close-w-30.png 3.5x" draggable="false" />
+        </div>  
+      </div>
+    </header>
+
     <section class="main">
       <aside class="sliders">
           <div class="red_bar">
@@ -32,7 +53,7 @@
       <aside class="value">
           <input type="text" id="hex_value" maxlength="7" />
       </aside>
-  </section>
+    </section>
     <script>
       var red_value = 0, green_value = 0, blue_value = 0, alpha_value = 1;
       var red_input = document.querySelector(".red_bar input")
@@ -104,6 +125,7 @@
         body.style.background = `rgba(${red_value}, ${green_value}, ${blue_value}, ${alpha_value})`
       };
 
+      require('./js/header.js');
     </script>
   </body> 
 </html>
