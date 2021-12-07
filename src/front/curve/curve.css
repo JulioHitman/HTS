@@ -37,8 +37,8 @@ body {
   table-layout: fixed;
   width: 100%;
   background-color: black;
-  background-image: url(./img/high-trading-logo-branco-op-5.png);
-  background-repeat: space;
+  background-image: url(./img/high-trading-logo-branco-op-4.png);
+  background-repeat: no-repeat;
   background-blend-mode: luminosity;
 }
 
