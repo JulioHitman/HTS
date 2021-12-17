@@ -66,7 +66,7 @@ function createWindow () {
 
 
   // LoginPage.webContents.openDevTools();
-  // MainPage.webContents.openDevTools();
+  MainPage.webContents.openDevTools();
   // Tools.webContents.openDevTools();
 
 

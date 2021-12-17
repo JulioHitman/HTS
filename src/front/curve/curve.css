@@ -56,6 +56,18 @@ body {
   font-weight: bold;
 }
 
+.float-left {
+  float: left;
+}
+
+.float-right {
+  float: right;
+}
+
+.size-15 {
+  font-size: 15px;
+}
+
 .left {
   text-align: left;
 }
